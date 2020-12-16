@@ -1,0 +1,62 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <record id="soportes_main_tree" model="ir.ui.view">
+      <field name="name">soportes_main.tree</field>
+      <field name="model">soportes.soportes</field>
+      <field name="arch" type="xml">
+        <tree string="Soportes">
+          <field name="fecha_solicitud"/>
+          <field name="descripcion"/>
+          <field name="tipo_solicitud"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="soportes_form" model="ir.ui.view">
+      <field name="name">soportes.form</field>
+      <field name="model">soportes.soportes</field>
+      <field name="arch" type="xml">
+        <form string="Soportes">
+          <sheet>
+            <group>
+              <group>
+                <field name="fecha_solicitud"/>
+              </group>
+              <group>
+                <field name="tipo_solicitud"/>
+              </group>
+            </group>
+            <group>
+              <field name="descripcion"/>
+            </group>
+          </sheet>
+          <div class="oe_chatter">
+              <field name="message_follower_ids"/>
+              <field name="activity_ids"/>
+              <field name="message_ids"/>
+          </div>
+        </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="soportes.action_window">
+      <field name="name">Soporte a sistemas</field>
+      <field name="res_model">soportes.soportes</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">Crea tu primer solicitud</p>
+      </field>
+    </record>
+
+    <!-- Top menu item -->
+    <menuitem name="Soporte sistemas" sequence="0" id="soportes.menu_root"/>
+    <!-- menu categories -->
+    <menuitem name="Menu 1" id="soportes.menu_1" parent="soportes.menu_root"/>
+    <menuitem name="Menu 2" id="soportes.menu_2" parent="soportes.menu_root"/>
+
+    <!-- actions -->
+    <menuitem name="List" id="soportes.menu_1_list" parent="soportes.menu_1" action="soportes.action_window"/>
+  </data>
+</odoo>
